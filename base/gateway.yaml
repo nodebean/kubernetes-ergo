@@ -5,6 +5,7 @@ metadata:
   namespace: istio-system
   annotations:
     networking.istio.io/service-type: NodePort
+    metallb.universe.tf/address-pool: default-pool 
 spec:
   gatewayClassName: istio
   listeners:
