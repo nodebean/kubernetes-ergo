@@ -195,7 +195,7 @@ data:
         class: "server-admin"
         hidden: true
         whois-line: is the server administrator
-        password: "$2a$04$0123456789abcdechangemef0123456789abcdef0123456789abcdef01234"
+        password: "$2a$04$0123456789abcdef0123456789abcdef0123456789abcdef01234"
     logging:
       - method: stderr
         type: "* -userinput -useroutput"
