@@ -4,7 +4,7 @@ metadata:
   name: ergo-service
   namespace: ergo
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: irc-server
   ports:
