@@ -6,7 +6,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: irc-server
+    app: ergo
   ports:
     - name: irc
       port: 6667
