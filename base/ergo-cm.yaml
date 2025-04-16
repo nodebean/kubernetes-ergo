@@ -48,12 +48,6 @@ data:
         available-to-chanops: true
     proxy-allowed-from:
         - localhost
-    # webirc:
-    #   - certfp: "abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789"
-    #     password: "$2a$04$abcdef0123456789abcdef0123456789abcdef0123456789abcde"
-    #     hosts:
-    #       - localhost
-    #     accept-hostname: false
     max-sendq: 96k
     compatibility:
         force-trailing: true
@@ -201,7 +195,6 @@ data:
         class: "server-admin"
         hidden: true
         whois-line: is the server administrator
-        # password: "$2a$04$0123456789abcdef0123456789abcdef0123456789abcdef01234"
     logging:
     - method: stderr
         type: "* -userinput -useroutput"
@@ -294,7 +287,6 @@ data:
     listener: "127.0.0.1:8089"
     bearer-tokens:
         - "example"
-
 
   ergo.motd: |
     Welcome to the Fava Casa IRC Network!
