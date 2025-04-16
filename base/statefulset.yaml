@@ -35,21 +35,15 @@ spec:
           requests:
             memory: "256Mi"
             cpu: "100m"
-        # livenessProbe:
-        #   tcpSocket:
-        #     port: 6697
-        #   initialDelaySeconds: 30
-        #   periodSeconds: 10
-        # readinessProbe:
-        #   tcpSocket:
-        #     port: 6697
-        #   initialDelaySeconds: 5
-        #   periodSeconds: 5
         volumeMounts:
-        # - name: ergo-config-volume
-        #   mountPath: /ircd
         - name: ergo-data
           mountPath: /ircd
+        - name: ergo-config-volume
+          mountPath: /ircd/ircd.yaml
+          subPath: ircd.yaml
+        - name: ergo-config-volume
+          mountPath: /ircd/motd.yaml
+          subPath: motd.yaml          
       volumes:
       - name: ergo-config-volume
         configMap:
