@@ -6,7 +6,7 @@ metadata:
 spec:
   parentRefs:
     - name: irc-gateway
-      namespace: istio-system
+      namespace: ergo
       sectionName: irc
   rules:
     - backendRefs:
@@ -21,7 +21,7 @@ metadata:
 spec:
   parentRefs:
     - name: irc-gateway
-      namespace: istio-system
+      namespace: ergo
       sectionName: irc-tls
   rules:
     - backendRefs:
