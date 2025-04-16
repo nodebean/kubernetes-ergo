@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: pvc-to-object-storage-backup
-  namespace: default
+  namespace: ergo
 spec:
   schedule: "0 2 * * *"  # Runs at 2:00 AM every day
   concurrencyPolicy: Forbid

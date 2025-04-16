@@ -8,7 +8,7 @@ metadata:
     gateway.networking.k8s.io/gateway-name: irc-gateway-public
     istio.io/gateway-name: irc-gateway-public
   name: irc-public
-  namespace: istio-system
+  namespace: ergo
 spec:
   selector:
     gateway.networking.k8s.io/gateway-name: irc-gateway-public
