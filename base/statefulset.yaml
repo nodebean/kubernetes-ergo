@@ -46,8 +46,8 @@ spec:
           initialDelaySeconds: 5
           periodSeconds: 5
         volumeMounts:
-        - name: ergo-config-volume
-          mountPath: /ircd
+        # - name: ergo-config-volume
+        #   mountPath: /ircd
         - name: ergo-data
           mountPath: /ircd
       volumes:
