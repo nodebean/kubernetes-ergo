@@ -17,43 +17,43 @@ spec:
         app: ergo
     spec:
       containers:
-        - name: ergo
-          image: ghcr.io/ergochat/ergo:v2.15.0
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 6667
-              name: irc
-            - containerPort: 6697
-              name: irc-ssl
-          env:
-            - name: ERGO__OPERS__ADMIN__PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: ergo-secrets
-                  key: admin-password
-          resources:
-            requests:
-              memory: "256Mi"
-              cpu: "100m"
-          volumeMounts:
-            - name: ergo-data
-              mountPath: /ircd
-            - name: ergo-config-volume
-              mountPath: /ircd/ircd.yaml
-              subPath: ircd.yaml
-            - name: ergo-config-volume
-              mountPath: /ircd/motd.yaml
-              subPath: motd.yaml
-      volumes:
-        - name: ergo-config-volume
-          configMap:
-            name: ergo-cm
-  volumeClaimTemplates:
-    - metadata:
-        name: ergo-data
-      spec:
-        storageClassName: openebs-hostpath
-        accessModes: ["ReadWriteOnce"]
+      - name: ergo
+        image: ghcr.io/ergochat/ergo:v2.15.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 6667
+          name: irc
+        - containerPort: 6697
+          name: irc-ssl
+        env:
+        - name: ERGO__OPERS__ADMIN__PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: ergo-secrets
+              key: admin-password
         resources:
           requests:
-            storage: 1Gi
+            memory: "256Mi"
+            cpu: "100m"
+        volumeMounts:
+        - name: ergo-data
+          mountPath: /ircd
+        - name: ergo-config-volume
+          mountPath: /ircd/ircd.yaml
+          subPath: ircd.yaml
+        - name: ergo-config-volume
+          mountPath: /ircd/ergo.motd
+          subPath: ergo.motd
+      volumes:
+      - name: ergo-config-volume
+        configMap:
+          name: ergo-cm
+  volumeClaimTemplates:
+  - metadata:
+      name: ergo-data
+    spec:
+      storageClassName: openebs-hostpath
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 1Gi
