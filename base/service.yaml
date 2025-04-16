@@ -11,8 +11,8 @@ spec:
     - name: irc
       port: 6667
       targetPort: 6667
-      nodePort: 30667
+      # nodePort: 30667
     - name: irc-tls
       port: 6697
       targetPort: 6697
-      nodePort: 30697
+      # nodePort: 30697
