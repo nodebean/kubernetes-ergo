@@ -17,13 +17,13 @@ spec:
   ports:
     - appProtocol: tcp
       name: irc
-      nodePort: 6667
+      nodePort: 30001
       port: 6667
       protocol: TCP
       targetPort: 6667
     - appProtocol: tcp
       name: irc-tls
-      nodePort: 6697
+      nodePort: 30002
       port: 6697
       protocol: TCP
       targetPort: 6697
