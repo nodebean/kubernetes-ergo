@@ -195,6 +195,7 @@ data:
         class: "server-admin"
         hidden: true
         whois-line: is the server administrator
+        password: "$2a$04$0123456789abcdechangemef0123456789abcdef0123456789abcdef01234"
     logging:
       - method: stderr
         type: "* -userinput -useroutput"
@@ -287,7 +288,6 @@ data:
       listener: "127.0.0.1:8089"
       bearer-tokens:
         - "example"
-
 
   ergo.motd: |
     Welcome to the Fava Casa IRC Network!
