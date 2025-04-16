@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: ergo
-        image: ghcr.io/ergochat/ergo:2.15.0
+        image: ghcr.io/ergochat/ergo:v2.15.0
         imagePullPolicy: Always
         ports:
         - containerPort: 6667
