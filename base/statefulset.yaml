@@ -58,6 +58,7 @@ spec:
   - metadata:
       name: ergo-data
     spec:
+      storageClassName: openebs-hostpath
       accessModes: ["ReadWriteOnce"]
       resources:
         requests:
