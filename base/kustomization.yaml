@@ -4,6 +4,7 @@ namespace: ergo
 
 resources:
   - backup-cronjob.yaml
+  - certificate.yaml
   - ergo-cm.yaml
   - ergo-secrets.yaml
   - gateway.yaml
