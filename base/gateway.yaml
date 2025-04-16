@@ -1,0 +1,22 @@
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: Gateway
+metadata:
+  name: irc-gateway-public
+  namespace: istio-system
+  annotations:
+    networking.istio.io/service-type: NodePort
+spec:
+  gatewayClassName: istio
+  listeners:
+    - name: irc
+      port: 6667
+      protocol: TCP
+      allowedRoutes:
+        namespaces:
+          from: All
+    - name: irc-tls
+      port: 6697
+      protocol: TCP
+      allowedRoutes:
+        namespaces:
+          from: All

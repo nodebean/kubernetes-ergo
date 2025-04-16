@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    networking.istio.io/service-type: NodePort
+  labels:
+    gateway.istio.io/managed: istio.io-gateway-controller
+    gateway.networking.k8s.io/gateway-name: irc-gateway-public
+    istio.io/gateway-name: irc-gateway-public
+  name: irc-public
+  namespace: istio-system
+spec:
+  selector:
+    gateway.networking.k8s.io/gateway-name: irc-gateway-public
+  type: NodePort
+  ports:
+    - appProtocol: tcp
+      name: irc
+      nodePort: 6667
+      port: 6667
+      protocol: TCP
+      targetPort: 6667
+    - appProtocol: tcp
+      name: irc-tls
+      nodePort: 6697
+      port: 6697
+      protocol: TCP
+      targetPort: 6697

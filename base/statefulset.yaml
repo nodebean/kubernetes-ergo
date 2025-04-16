@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: ergo
+  namespace: default
+  labels:
+    app: ergo
+spec:
+  serviceName: "ergo"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ergo
+  template:
+    metadata:
+      labels:
+        app: ergo
+    spec:
+      containers:
+      - name: ergo
+        image: ghcr.io/ergochat/ergo:2.15.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 6667
+          name: irc
+        - containerPort: 6697
+          name: irc-ssl
+        env:              
+        - name: ERGO__OPERS__ADMIN__PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: ergo-secrets
+              key: admin-password
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+        livenessProbe:
+          tcpSocket:
+            port: 6697
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          tcpSocket:
+            port: 6697
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        volumeMounts:
+        - name: ergo-config-volume
+          mountPath: /ircd
+        - name: ergo-data
+          mountPath: /ircd
+      volumes:
+      - name: ergo-config-volume
+        configMap:
+          name: ergo-cm
+  volumeClaimTemplates:
+  - metadata:
+      name: ergo-data
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 1Gi

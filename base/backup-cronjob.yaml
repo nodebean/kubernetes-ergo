@@ -1,0 +1,54 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: pvc-to-object-storage-backup
+  namespace: default
+spec:
+  schedule: "0 2 * * *"  # Runs at 2:00 AM every day
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: backup-container
+            image: amazon/aws-cli:latest  # For AWS S3 - adjust for other providers
+            command:
+            - /bin/sh
+            - -c
+            - |
+              # For AWS S3
+              aws s3 cp /data/your-file.db s3://your-bucket/backups/your-file-$(date +%Y%m%d).db
+              
+              # Alternatively for different providers:
+              # For Google Cloud Storage
+              # gcloud storage cp /data/your-file.db gs://your-bucket/backups/your-file-$(date +%Y%m%d).db
+              
+              # For Azure Blob Storage
+              # az storage blob upload --container-name your-container --file /data/your-file.db --name backups/your-file-$(date +%Y%m%d).db
+              
+              echo "Backup completed successfully"
+            env:
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: aws-credentials
+                  key: access-key
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: aws-credentials
+                  key: secret-key
+            - name: AWS_DEFAULT_REGION
+              value: "us-east-1"
+            volumeMounts:
+            - name: data-volume
+              mountPath: /data
+              readOnly: true  # Read-only access to the data
+          restartPolicy: OnFailure
+          volumes:
+          - name: data-volume
+            persistentVolumeClaim:
+              claimName: your-pvc-name  # Reference to your existing PVC
