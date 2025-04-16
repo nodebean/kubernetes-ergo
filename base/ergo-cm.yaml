@@ -216,7 +216,7 @@ data:
         timeout: 3s
         max-conns: 4
     languages:
-      enabled: true
+      enabled: false
       default: en
       path: languages
     limits:
