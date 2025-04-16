@@ -8,7 +8,7 @@ resources:
   - ergo-secrets.yaml
   - gateway.yaml
   - namespace.yaml
-  - pv.yaml
+  # - pv.yaml
   - service.yaml
   - statefulset.yaml
   - tcproute.yaml
