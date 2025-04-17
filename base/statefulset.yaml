@@ -45,10 +45,10 @@ spec:
           mountPath: /ircd/ergo.motd
           subPath: ergo.motd
         - name: ergo-tls
-          mountPath: /ircd/fullchain.key
+          mountPath: /ircd/fullchain.pem
           subPath: tls.crt
         - name: ergo-tls
-          mountPath: /ircd/private.key
+          mountPath: /ircd/privkey.pem
           subPath: tls.key          
       volumes:
       - name: ergo-config-volume
