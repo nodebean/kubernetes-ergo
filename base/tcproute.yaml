@@ -1,0 +1,29 @@
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: TCPRoute
+metadata:
+  name: irc-route
+  namespace: ergo
+spec:
+  parentRefs:
+    - name: irc-gateway
+      namespace: ergo
+      sectionName: irc
+  rules:
+    - backendRefs:
+        - name: ergo-service
+          port: 6667
+---
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: TCPRoute
+metadata:
+  name: irc-tls-route
+  namespace: ergo
+spec:
+  parentRefs:
+    - name: irc-gateway
+      namespace: ergo
+      sectionName: irc-tls
+  rules:
+    - backendRefs:
+        - name: ergo-service
+          port: 6697
