@@ -44,10 +44,19 @@ spec:
         - name: ergo-config-volume
           mountPath: /ircd/ergo.motd
           subPath: ergo.motd
+        - name: ergo-tls
+          mountPath: /ircd/fullchain.key
+          subPath: tls.crt
+        - name: ergo-tls
+          mountPath: /ircd/private.key
+          subPath: tls.key          
       volumes:
       - name: ergo-config-volume
         configMap:
           name: ergo-cm
+      - name: ergo-tls
+        secret:
+          secretName: irc-fava-casa-tls         
   volumeClaimTemplates:
   - metadata:
       name: ergo-data
